@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %} 
+<div class="container">
+    <form action="" method="POST" enctype="multipart/form-data"> 
+        {% csrf_token %}
+        {% if form.title.errors %}
+        {{form.title.errors}}
+        {% endif %}
+        {% if form.non_field_errors %}
+        {% for r in form.non_field_errors %}
+        {{r}}
+        {% endfor %}
+        {% endif %}     
+        <div class="form-row">
+            {% csrf_token %}
+            {% for f in form %}
+            {{ f.label_tag }}
+            <p>{{f}}</p>
+            {% endfor %}   
+        </div>
+    <input type="submit" value="Submit">
+    </form>
+  
+{% endblock %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>

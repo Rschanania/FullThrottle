@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %} 
+<div class="container">
+    <h1>List of post</h1>
+    <div class="data form-row">
+        
+        {% for r in object_list %}
+        <p>{{r.title}}</p>
+        <p> {{r.content}}</p><p>{{r.created_at}}</p><p>{{r.user.username}}</p>
+        <p><img src="{% static r.thumbnail.url %}" width="250" height="150"></p>
+        <p><h1>Gallery Image </h1></p>
+        {% for gallery in r.gallery_set.all %}
+        <h1>Hello</h1>
+        <img src="{% static gallery.images.url %}"/>
+        
+        {% endfor %}
+        {% endfor %}
+
+        
+
+    </div>
+    <div class="form-row">
+        <h1>Categories </h1>
+        {% for cat in categories %}
+        {{cat.title| join:","}}
+        {% endfor %}
+    </div>
+{% endblock %}
+
+

@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %} 
+<div class="container">
+    <h1>class based form view </h1>
+    <form action="" method="POST" enctype="multipart/form-data"> 
+        {% if form.title.errors %}
+        {{form.title.errors}}
+        {% endif %}
+        {% if form.non_field_errors %}
+        {% for r in form.non_field_errors %}
+        {{r}}
+        {% endfor %}
+        {% endif %}
+       
+        <div class="form-row">
+            {% csrf_token %}
+            {% for f in form %}
+            {{ f.label_tag }}
+            <p>{{f}}</p>
+            {% endfor %}
+            
+    
+        </div>
+    <input type="submit" value="Add Post ">
+    </form>
+  
+{% endblock %}
+
+

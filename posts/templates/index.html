@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %} 
+<div class="container">
+    <form action="/posts/" method="POST" enctype="multipart/form-data"> 
+        {% if form.title.errors %}
+        {{form.title.errors}}
+        {% endif %}
+        {% if form.non_field_errors %}
+        {% for r in form.non_field_errors %}
+        {{r}}
+        {% endfor %}
+        {% endif %}
+       
+        <div class="form-row">
+            {% csrf_token %}
+            {% for f in form %}
+            {{ f.label_tag }}
+            <p>{{f}}</p>
+            {% endfor %}
+            
+    
+        </div>
+    <input type="submit" value="Add Post ">
+    </form>
+    <div class="data form-row">
+        
+        {% for r in rows %}
+        <p>{{r.title}}</p>
+        <p> {{r.content}}</p><p>{{r.created_at}}</p><p>{{r.user.username}}</p>
+        <p><img src="{% static r.thumbnail.url %}" width="250" height="150"></p>
+        <p><h1>Gallery Image </h1></p>
+        {% for gallery in r.gallery_set.all %}
+        <h1>Hello</h1>
+        <img src="{% static gallery.images.url %}"/>
+        
+        {% endfor %}
+        {% endfor %}
+
+        
+
+    </div>
+    <div class="form-row">
+        <h1>Categories </h1>
+        {% for cat in categories %}
+        {{cat.title| join:","}}
+        {% endfor %}
+    </div>
+{% endblock %}
+
+

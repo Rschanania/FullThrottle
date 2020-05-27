@@ -1,0 +1,74 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+  
+{% block css %}
+
+
+    .anchor-item{
+        width:15px;
+        display: block;
+        border: 2px solid rebeccapurple;
+        positon:relative;
+        padding: 6px;
+    }
+
+
+    {% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <div class="anchor-item border border-success">
+        <a id="item-1 mx-3" href="/posts/add/">Add Post</a>
+        <a id="item-1 mx-3" href="/mvapi/">APIS of Post</a>
+        <a id="item-1 mx-3" href="/user/profile/"> Post account</a>
+    </div>
+
+    <div class="data form-row list my-2">
+        <table class="bg-info ">
+            <thead class="bg-success">
+                <th>Post Title </th>
+                <th>Post content </th>
+                <th>user</th>
+
+                <th>status</th>
+                <th>thumbnail</th>
+                <th>Operations</th>
+            </thead>
+
+
+            {% for r in object_list %}
+            <tr>
+                <td>{{r.title}}</td>
+                <td>
+                    <p> {{r.content}}</p>
+                </td>
+                <td>
+                    <p>{{r.user.username}}</p>
+                </td>
+                <td>{{r.status}}</td>
+                <td>
+                    <p><img src="{% static r.thumbnail.url %}" width="250" height="150"></p>
+                </td>
+
+
+                <td> <a href="{% url 'post-edit' r.id %}">Edit post</a></td>
+                <td><a href="{% url 'post-delete' r.id %}"> Delete Post</a><br></td>
+
+                <td> <a href="{% url 'post-detail' r.id %}">View Detail</a></td>
+
+
+
+
+
+
+                {% endfor %}
+
+
+            </tr>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

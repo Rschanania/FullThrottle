@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %} 
+<div class="container ">
+    <form action="" method="POST" enctype="multipart/form-data"> 
+        {% csrf_token %}
+      <p class="text-primary">Are you Want to delete {{object.title}}</p>   
+    <button type="submit" class="btn-outline-danger" >yes Delete</button>
+    <a href="{% url 'post-detail' object.id %}">Cancle</a>
+    
+    </form>
+    </div>
+  
+{% endblock %}

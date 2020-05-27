@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <thead>
+
+        </thead>
+        <tbody>
+            <tr><td>Post title </td><td>Post Content</td><td>Created date</td></tr>
+            {% for p in object_list %}
+            <tr><td>{{p.title}}</td><td>{{p.content}}</td><td>{{p.Created_at}}</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
